@@ -121,10 +121,10 @@ A. With these VIA chipsets, only FSB frequencies that are within the current
    Use the new UNSAFE MODE to override this behaviour. 
 
 Q. How do I check if the FSB has actually changed?
-Q. I use ChkCPU to confirm FSB changes in DOS.
+A. I use ChkCPU to confirm FSB changes in DOS.
 
 Q. How do I change the multiplier on my CPU?
-Q. I use SetMul to change the multiplier on my VIA C3 CPU in DOS.
+A. I use SetMul to change the multiplier on my VIA C3 CPU in DOS.
 
 HISTORY
 -------
