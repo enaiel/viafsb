@@ -1,0 +1,27 @@
+
+ifeq ($(DJGPP),)
+$(error ERROR: DJGPP not defined! ***)
+endif
+
+CC = gcc
+#CFLAGS = -O2 -s -std=c99 -Wall -pedantic -finline -DDEBUG
+CFLAGS = -O2 -std=gnu99 -Wall -finline 
+LDFLAGS = -lm
+RM=del
+OBJS=viafsb.o pci.o smb.o log.o
+PLLOBJS=pll/*.o
+
+all: viafsb.exe
+
+viafsb.exe: $(OBJS)
+	$(MAKE) -C pll all
+	-$(CC) $(CFLAGS) -o viafsb.exe $(OBJS) $(PLLOBJS) $(LDFLAGS)
+
+%.o: %.c
+	-$(CC) $(CFLAGS) -c $^
+
+clean:
+	-$(RM) *.exe
+	-$(MAKE) -C pll clean
+	-$(RM) *.o
+

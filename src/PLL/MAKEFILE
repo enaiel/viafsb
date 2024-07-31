@@ -1,0 +1,18 @@
+
+ifeq ($(DJGPP),)
+$(error ERROR: DJGPP not defined! ***)
+endif
+
+CC = gcc
+#CFLAGS = -O2 -s -std=c99 -Wall -pedantic -finline -DDEBUG
+CFLAGS = -O2 -std=gnu99 -Wall -finline 
+RM=del
+
+all: pll
+
+pll: *.c
+	-$(CC) $(CFLAGS) -c *.c
+
+clean:
+	-$(RM) *.o
+
