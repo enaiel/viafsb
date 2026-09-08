@@ -38,10 +38,10 @@
 #define LFS3_BYTE	4
 #define LFS4_BYTE	-1	
 #define LFS5_BYTE	-1	
-#define FS0_BIT		2
-#define FS1_BIT		4
-#define FS2_BIT		5
-#define FS3_BIT		6
+#define FS0_BIT		4
+#define FS1_BIT		5
+#define FS2_BIT		6
+#define FS3_BIT		2
 #define FS4_BIT		-1
 #define FS5_BIT		-1
 #define LFS0_BIT	7
@@ -144,3 +144,12 @@ bool ics9248_127_can_read()
 	return alg1_can_read(&pll);
 }
 
+bool ics9248_127_test()
+{
+	return alg1_test(&pll);
+}
+
+void ics9248_127_print_cfg()
+{
+	alg1_print_cfg(&pll);
+}

@@ -50,7 +50,7 @@
 #define LFS3_BIT	6
 #define LFS4_BIT	-1	
 #define LFS5_BIT	-1	
-#define LFS_INV		0	
+#define LFS_INV		1	
 #define CAN_READ	1	
 #define CAN_TEST	1	
 #define FSB_TBL_SIZE 	64
@@ -126,8 +126,6 @@ static const fsb_rec fsb_tbl[] =
 
 static u8 pll_reg[] = 
 { 
-	/* 0x00, 0xCF, 0xFF, 0xFF, 0x87, 0x93, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x62, 0x51 */
 	0x00, 0xCF, 0xFF, 0xFF, 0xFF, 0x93, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x62, 0x51 
 }; 
@@ -195,3 +193,12 @@ bool w83194br_39b_can_read()
 	return alg1_can_read(&pll);
 }
 
+bool w83194br_39b_test()
+{
+	return alg1_test(&pll);
+}
+
+void w83194br_39b_print_cfg()
+{
+	alg1_print_cfg(&pll);
+}

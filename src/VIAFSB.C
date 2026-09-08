@@ -65,7 +65,7 @@
 #define SMB_REV_ID	0xD6
 
 #define FNAME		"VIAFSB"
-#define VIAFSB_VER	"0.3.0"
+#define VIAFSB_VER	"0.3.1"
 
 /* VIA SMB Error Codes */
 #define ERRVIAFSB	200
@@ -253,22 +253,6 @@ bool find_via(struct via_smb *smb)
 	return FALSE;
 }
 
-bool find_pll()
-{
-	int ret;
-	u8 cmd = 0x00;
-	u8 addr = PLL_SLAVE_ADDR;
-	ret = smb_write_quick(addr, cmd); 	
-#ifdef DEBUG
-	log_debug("addr\tret\n");
-	log_debug("0x%02X\t%2i\n",addr,ret);			
-#endif
-	if(ret >= 0)
-		return TRUE;
-	else
-		return FALSE;
-}
-
 bool set_pll(const char *name)
 {
 	int i;
@@ -427,7 +411,7 @@ int check_pll(char *pll_name_p)
 	log_no_debug("Testing... ");
 	if(curr_pll->can_test())
 	{
-		if(!find_pll())
+		if(!curr_pll->test())
 		{
 			log_no_debug("ERROR\nCannot contact PLL on SMBus\n");
 			log_debug("%s: No PLL found at SMBus Slave Address 0x%02X\n", FNAME, PLL_SLAVE_ADDR);
@@ -482,7 +466,7 @@ void print_usage()
 	"Author: Enaiel <enaiel@gmail.com> (c) 2022. WARNING: USE AT YOUR OWN RISK!\n");
 }
 
-int get_opts(int argc, char* argv[], char **pll_name_p, float *fsb_p, float *pci_p, bool *debug, bool *unsafe)
+int get_opts(int argc, char* argv[], char **pll_name_p, float *fsb_p, float *pci_p, bool *debug, bool *unsafe, bool *config)
 {
 	if(argc < 2 || argc > 5) 
 		return 0;
@@ -498,6 +482,10 @@ int get_opts(int argc, char* argv[], char **pll_name_p, float *fsb_p, float *pci
 		{
 			*unsafe = TRUE;
 		}
+		else if(!strcasecmp(argv[i], "-c") || !strcasecmp(argv[i], "--config")) 
+		{
+			*config = TRUE;
+		}
 		else if (*pll_name_p == NULL)
 		{
 			*pll_name_p = argv[i];
@@ -509,12 +497,12 @@ int get_opts(int argc, char* argv[], char **pll_name_p, float *fsb_p, float *pci
 		else
 			return 0;
 	}
-	if((argc < 3 && (*debug || *unsafe)) || (argc < 4 && (*debug && *unsafe)))
+	if((argc < 3 && (*debug || *unsafe || *config)) || (argc < 4 && (*debug && *unsafe && *config)))
 		return 0;
 	return 1;
 }
 
-int run(char *pll_name_p, float fsb_p, float pci_p, bool debug, bool unsafe)
+int run(char *pll_name_p, float fsb_p, float pci_p, bool debug, bool unsafe, bool config)
 {
 	float fsb, pci;
 	u8 fsb_key;
@@ -531,6 +519,13 @@ int run(char *pll_name_p, float fsb_p, float pci_p, bool debug, bool unsafe)
 	if(ret < 0) return ret;
 	ret = check_pll(pll_name_p);
 	if(ret < 0) return ret;
+	if(config)
+	{
+		log_no_debug("Printing PLL config...\n\n");
+		curr_pll->print_cfg();
+		fflush(stdout);
+		return 0;
+	}
 	log_no_debug("Getting FSB... ");
 	if(!curr_pll->can_read())
 	{
@@ -636,10 +631,11 @@ int main(int argc, char *argv[])
 	char *pll_name_p = NULL;
 	bool debug = FALSE;
 	bool unsafe = FALSE;
-	if(!get_opts(argc, argv, &pll_name_p, &fsb_p, &pci_p, &debug, &unsafe))
+	bool config = FALSE;
+	if(!get_opts(argc, argv, &pll_name_p, &fsb_p, &pci_p, &debug, &unsafe, &config))
 	{
 		print_usage();
 		return -1;
 	}
-	return run(pll_name_p, fsb_p, pci_p, debug, unsafe);
+	return run(pll_name_p, fsb_p, pci_p, debug, unsafe, config);
 }

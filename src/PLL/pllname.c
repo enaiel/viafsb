@@ -127,3 +127,12 @@ bool pllname_can_read()
 	return alg1_can_read(&pll);
 }
 
+bool pllname_test()
+{
+	return alg1_test(&pll);
+}
+
+void pllname_print_cfg()
+{
+	alg1_print_cfg(&pll);
+}

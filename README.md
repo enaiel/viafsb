@@ -191,3 +191,8 @@ HISTORY
 
 2024-07-31: v0.3.0
 * Initial Github release.
+
+2026-09-08: v0.3.1
+* Code refactoring and cleanup.
+* Added print config feature to help verify against PLL datasheet.
+* Fixes for PLLs ICS9248-127, W83194BR-39B, W83195R-08.

@@ -1,4 +1,4 @@
-VIAFSB v0.3.0 - DOS FSB utility for VIA chipsets.
+VIAFSB v0.3.1 - DOS FSB utility for VIA chipsets.
 =================================================
 VIAFSB is a little DOS utility I wrote for changing the FSB on the couple of 
 VIA motherboards that I own. Why should only owners of 440BX motherboards have 
@@ -174,8 +174,13 @@ HISTORY
 * Updated command bytes for all PLLs.
 * Improved handling of read-only PLLs.
 * Improved handling of same FSB frequencies with different PCI values.
-* Added initial support for VIA chipsets VT8231 VT8233C VT8237/R VT8237A VT8237S VT8251.
-* Added initial support for PPLs ICS9248-127 ICS950405 W230-03H.
+* Added initial support for VIA chipsets VT8231, VT8233C, VT8237/R, VT8237A, VT8237S, VT8251.
+* Added initial support for PLLs ICS9248-127, ICS950405, W230-03H.
 
 2024-07-31: v0.3.0
 * Initial Github release.
+
+2026-09-08: v0.3.1
+* Code refactoring and cleanup.
+* Added print config feature to help verify against PLL datasheet.
+* Fixes for PLLs ICS9248-127, W83194BR-39B, W83195R-08.

@@ -94,8 +94,6 @@ static const fsb_rec fsb_tbl[] =
 
 static u8 pll_reg[] = 
 { 
-	/* 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-  	0x00 */
 	0x42, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x03, 0x00, 
   	0x02
 }; 
@@ -163,3 +161,12 @@ bool pll205_03_can_read()
 	return alg1_can_read(&pll);
 }
 
+bool pll205_03_test()
+{
+	return alg1_test(&pll);
+}
+
+void pll205_03_print_cfg()
+{
+	alg1_print_cfg(&pll);
+}

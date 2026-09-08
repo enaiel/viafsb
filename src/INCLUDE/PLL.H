@@ -34,9 +34,11 @@ extern int name ## _get_fsb(float *fsb, float *pci, u8 *fsb_key, int *pci_div); 
 extern int name ## _get_supp_fsb(int idx, float *fsb, float *pci, u8 *fsb_key, int *pci_div); \
 extern bool name ## _can_test(); \
 extern bool name ## _can_read(); \
+extern bool name ## _test(); \
+extern void name ## _print_cfg(); \
 extern int name ## _get_supp_fsb_size(); 
 
-#define PLL_MAKE_STRUCT(name, instance) {name, instance ## _set_fsb, instance ## _get_fsb, instance ## _get_supp_fsb, instance ## _can_test, instance ## _can_read, instance ## _get_supp_fsb_size}
+#define PLL_MAKE_STRUCT(name, instance) {name, instance ## _set_fsb, instance ## _get_fsb, instance ## _get_supp_fsb, instance ## _can_test, instance ## _can_read, instance ## _test, instance ## _print_cfg, instance ## _get_supp_fsb_size}
 
 typedef struct
 {
@@ -47,6 +49,8 @@ typedef struct
 	int (*get_supp_fsb)(int idx, float *fsb, float *pci, u8 *fsb_key, int *pci_div);
 	bool (*can_test)();
 	bool (*can_read)();
+	bool (*test)();
+	void (*print_cfg)();
 	int (*get_supp_fsb_size)();
 } pll_rec;
 
