@@ -32,10 +32,10 @@
 #define FSB_BYTE	0
 #define BYTE_COUNT_BYTE	6
 #define FS_SEL_BIT	-1
-#define LFS0_BYTE	0
-#define LFS1_BYTE	0
-#define LFS2_BYTE	0
-#define LFS3_BYTE	0
+#define LFS0_BYTE	-1
+#define LFS1_BYTE	-1
+#define LFS2_BYTE	-1
+#define LFS3_BYTE	-1
 #define LFS4_BYTE	-1	
 #define LFS5_BYTE	-1	
 #define FS0_BIT		0
@@ -44,10 +44,10 @@
 #define FS3_BIT		3
 #define FS4_BIT		-1
 #define FS5_BIT		-1
-#define LFS0_BIT	0
-#define LFS1_BIT	1
-#define LFS2_BIT	2
-#define LFS3_BIT	3
+#define LFS0_BIT	-1
+#define LFS1_BIT	-1
+#define LFS2_BIT	-1
+#define LFS3_BIT	-1
 #define LFS4_BIT	-1	
 #define LFS5_BIT	-1	
 #define LFS_INV		0	
@@ -79,7 +79,7 @@ static const fsb_rec fsb_tbl[] =
 static u8 pll_reg[] = 
 {
 	0xB0, 0xFF, 0xFF, 0xF5, 0x7F, 0xFF, 0x06, 0x01, 0xCC, 0x77, 0x00,
-	0xFF, 0xFF, 0xFF, 0xFF 
+	0xFF, 0xFF, 0xFF, 0x7F 
 }; 
 
 static const pll_data pll =
@@ -145,3 +145,12 @@ bool ics950405_can_read()
 	return alg1_can_read(&pll);
 }
 
+bool ics950405_test()
+{
+	return alg1_test(&pll);
+}
+
+void ics950405_print_cfg()
+{
+	alg1_print_cfg(&pll);
+}

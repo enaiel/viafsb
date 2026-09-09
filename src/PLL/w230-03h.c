@@ -160,3 +160,12 @@ bool w230_03h_can_read()
 	return alg1_can_read(&pll);
 }
 
+bool w230_03h_test()
+{
+	return alg1_test(&pll);
+}
+
+void w230_03h_print_cfg()
+{
+	alg1_print_cfg(&pll);
+}

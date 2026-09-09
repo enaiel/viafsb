@@ -38,9 +38,19 @@ typedef int bool;
 #define FALSE 0
 #define TRUE 1
 
+__attribute__((weak)) bool get_bit_int(u32 num, u8 bit)
+{
+	return (num >> bit) & (u8)1;
+}
+
 __attribute__((weak)) bool get_bit(u8 byte, u8 bit)
 {
 	return (byte >> bit) & (u8)1;
+}
+
+__attribute__((weak)) u32 set_bit_int(u32 num, u8 bit, bool val)
+{
+	return (num & ~((u8)1 << bit)) | ((u8)val << bit);
 }
 
 __attribute__((weak)) u8 set_bit(u8 byte, u8 bit, bool val)
