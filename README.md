@@ -69,11 +69,14 @@ Support: http://vogons.org/viewtopic.php?f=46&t=87013
 
 Thanks to:
 * Vogons.org member @EduBat for help decoding PLL datasheets.
-* Vogons.org members @jheronimus, @Zeerex, @elcrys, @havli, @GremFive, and 
-  @Falcosoft for testing the program.
+* Vogons.org members @Falcosoft and @BitWrangler for sharing their insights. 
+* Vogons.org members @jheronimus, @Zeerex, @elcrys, @havli, @GremFive, @Falcosoft,  
+ @GigAHerZ, @mockingbird, @rollandcg, @e8root, @tauro, @Bruno128, and @dj_pirtu 
+ for testing the program.
+* Vogons.org member @Xardion for contributing support for the W211BH PLL.
 * Linux contributors for Linux i2c bus interface (i2c) source code.
 * Linux contributors for Linux i2c VIA Pro driver (i2c-viapro) source code.
-* Nikolay Kislitsa \<deusexbeer@gmail.com\> for Linux FSB overclocking tool (lfsb)  source code.  
+* Nikolay Kislitsa <deusexbeer@gmail.com> for Linux FSB overclocking tool (lfsb) source code. 
 
 SOURCE
 ------
@@ -87,14 +90,15 @@ Built with DJGPP. You can obtain your copy from http://www.delorie.com/djgpp.
 TESTED
 ------
 
-Motherboard               | Southbridge  | PLL         
---------------------------|--------------|--------------
-MSI MS-6369     	  | VT82C686/A/B | ICS94211
-QDI P6V694T/A10T	  | VT82C686/A/B | CY28316 
-QDI P6V694T/A10T	  | VT82C686/A/B | ICS94241 
-ABIT KT7A       	  | VT82C686/A/B | PLL-205-03
-Unbranded MVP4		  | VT82C686/A/B | W156C
-PCPartner AP133TAS3-T205C | VT82C686/A/B | ICS94211
+Motherboard               | Southbridge  | PLL             | 
+--------------------------|--------------|-----------------|
+MSI MS-6369 	          | VT82C686/A/B | ICS94211        |
+QDI P6V694T/A10T	  | VT82C686/A/B | CY28316         |
+QDI P6V694T/A10T	  | VT82C686/A/B | ICS94241        |
+ABIT KT7A       	  | VT82C686/A/B | PLL-205-03      |
+Unbranded MVP4		  | VT82C686/A/B | W156C           |
+PCPartner AP133TAS3-T205C | VT82C686/A/B | ICS94211        |
+Asus A7V133-VM            | VT82C686/A/B | ICS94215        |
 
 FAQ
 ---
@@ -114,21 +118,27 @@ Q. Why does my computer crash when I use this utility to change the FSB?
 A. Stability when changing FSB depends on your motherboard. If the selected FSB 
    hangs the computer when changed from the BIOS, or using programs like 
    CPUFSB/SetFSB/SoftFSB, it will also hang when changed using this program. 
-   Also, FSB that is latched by hardware jumpers are inherently more stable than
-   those that are selected in the BIOS or set using this program, as the latches
-   are not trying to change the FSB on a running CPU.
+   Also, FSB that is latched by hardware jumpers are inherently more stable as   
+   the latches are not trying to change the FSB on a running CPU. Setting the 
+   FSB frequency via the BIOS is also more stable as the BIOS will send a RESET 
+   pulse after a frequency change to minimize the instability.
 
 Q. How do I choose the right FSB frequencies when changing the FSB?
 
 A. With these VIA chipsets, only FSB frequencies that are within the current 
    PCI divider work. Going across PCI dividers crashes the computer, requiring a
    hard reset. To find the divider, divide the FSB frequency by the PCI 
-   frequency. Even within the same PCI divider, incrementally change the fsb
+   frequency. Even within the same PCI divider, incrementally change the FSB
    for more stability. The only way to change the PCI divider is to change the 
    boot FSB frequency using hardware jumpers or from the BIOS. Not all 
    motherboards have these jumpers or this ability in their BIOS. VIAFSB will
    now by default restrict the FSB to only those within the current PCI divider.
    Use the new UNSAFE MODE to override this behaviour. 
+
+Q. Why do I see double FSB/PCI frequency pairs in the supported frequencies?
+
+A. The double frequencies are due the same FSB/PCI frequency pairs having 
+   different spread spectrum settings in your PLL frequency table.  
 
 Q. How do I check if the FSB has actually changed?
 
@@ -196,3 +206,7 @@ HISTORY
 * Code refactoring and cleanup.
 * Added print config feature to help verify against PLL datasheet.
 * Fixes for PLLs ICS9248-127, W83194BR-39B, W83195R-08.
+
+2026-10-07: v0.3.2
+* Modified build and source files to add support for cross-compiling.
+* Support for the W211BH PLL contributed by Vogons.org member @Xardion. 

@@ -3,10 +3,13 @@ ifeq ($(DJGPP),)
 $(error ERROR: DJGPP not defined! ***)
 endif
 
-CC = gcc
-#CFLAGS = -O2 -s -std=c99 -Wall -pedantic -finline -DDEBUG
+RM=rm -f
+CP=cp -f
+MD=mkdir -p
+ZIP=zip -r
+
+CC = $(CROSS_COMPILER)gcc
 CFLAGS = -O2 -std=gnu99 -Wall -finline 
-RM=del
 
 all: pll
 

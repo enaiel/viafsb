@@ -65,7 +65,6 @@
 #define SMB_REV_ID	0xD6
 
 #define FNAME		"VIAFSB"
-#define VIAFSB_VER	"0.3.1"
 
 /* VIA SMB Error Codes */
 #define ERRVIAFSB	200
@@ -429,7 +428,7 @@ int check_pll(char *pll_name_p)
 
 void print_header(bool unsafe)
 {
-	log_all("VIAFSB v%s - DOS FSB utility for VIA chipsets.", VIAFSB_VER);
+	log_all("VIAFSB v%s - DOS FSB utility for VIA chipsets.", VERSION);
 	if(unsafe) log_all(" UNSAFE MODE ENABLED!");
 	log_all("\n");
 }
