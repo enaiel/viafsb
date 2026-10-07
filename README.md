@@ -73,6 +73,7 @@ Thanks to:
 * Vogons.org members @jheronimus, @Zeerex, @elcrys, @havli, @GremFive, @Falcosoft,  
  @GigAHerZ, @mockingbird, @rollandcg, @e8root, @tauro, @Bruno128, and @dj_pirtu 
  for testing the program.
+* Vogons.org member @Xardion for contributing support for the W211BH PLL.
 * Linux contributors for Linux i2c bus interface (i2c) source code.
 * Linux contributors for Linux i2c VIA Pro driver (i2c-viapro) source code.
 * Nikolay Kislitsa <deusexbeer@gmail.com> for Linux FSB overclocking tool (lfsb) source code. 
@@ -138,7 +139,6 @@ Q. Why do I see double FSB/PCI frequency pairs in the supported frequencies?
 
 A. The double frequencies are due the same FSB/PCI frequency pairs having 
    different spread spectrum settings in your PLL frequency table.  
-
 
 Q. How do I check if the FSB has actually changed?
 
@@ -209,3 +209,4 @@ HISTORY
 
 2026-10-07: v0.3.2
 * Modified build and source files to add support for cross-compiling.
+* Support for the W211BH PLL contributed by Vogons.org member @Xardion. 

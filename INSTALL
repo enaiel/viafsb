@@ -22,4 +22,9 @@ make clean all
 
 After compilation you will find the VIAFSB executable in the project directory.
 
+3. To cross-compile, pass the cross-compiler as an argument to make:
+
+make CROSS_COMPILER=i586-pc-msdosdjgpp- clean all 
+ 
+
 

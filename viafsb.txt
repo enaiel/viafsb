@@ -67,6 +67,7 @@ Thanks to:
 * Vogons.org members @jheronimus, @Zeerex, @elcrys, @havli, @GremFive, @Falcosoft,  
  @GigAHerZ, @mockingbird, @rollandcg, @e8root, @tauro, @Bruno128, and @dj_pirtu 
  for testing the program.
+* Vogons.org member @Xardion for contributing support for the W211BH PLL. 
 * Linux contributors for Linux i2c bus interface (i2c) source code.
 * Linux contributors for Linux i2c VIA Pro driver (i2c-viapro) source code.
 * Nikolay Kislitsa <deusexbeer@gmail.com> for Linux FSB overclocking tool (lfsb) source code.   
@@ -195,3 +196,4 @@ HISTORY
 
 2026-10-07: v0.3.2
 * Modified  build and source files to add support for cross-compiling.
+* Support for the W211BH PLL contributed by Vogons.org member @Xardion. 
