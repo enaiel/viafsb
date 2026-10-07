@@ -11,10 +11,11 @@ can try to add support for it.
 
 SUPPORTED
 ---------
-VIA chipsets: VT82C596/A/B VT82C686/A/B VT8231 VT8233/A/C VT8235 VT8237/R/A/S 
-              VT8251
-PLL: CY28316 ICS9148-37 ICS9248-127 ICS94211 ICS94215 ICS94241 ICS950405 
-     ICS950908 PLL205-03 W124 W156C W230-03H W83194BR-39B W83195R-08
+VIA chipsets: VT82C596/A VT82C596B VT82C686/A/B VT8231 VT8233 VT8233A
+              VT8233C VT8235 VT8237/R VT8237A VT8237S VT8251
+PLL: CY28316 ICS9148-37 ICS9248-127 ICS94211 ICS94215 ICS94241
+     ICS950405 ICS950908 PLL205-03 W124 W156C W211BH W230-03H
+     W83194BR-39B W83195R-08
 
 	Usage:   VIAFSB pll_name [fsb_freq[/pci_freq]] [-u|--unsafe]
 	Example: VIAFSB ICS94211		   / Get FSB
@@ -125,8 +126,8 @@ A. With these VIA chipsets, only FSB frequencies that are within the current
    now by default restrict the FSB to only those within the current PCI divider.
    Use the new UNSAFE MODE to override this behaviour. 
 
-Q. Why do I see double FSB/PCI frequency pairs in the supported frequencies?
-A. The double frequencies are due the same FSB/PCI frequency pairs having 
+Q. Why do I see duplicate FSB/PCI frequency pairs in the supported frequencies?
+A. The duplicate frequencies are due the same FSB/PCI frequency pairs having 
    different spread spectrum settings in your PLL frequency table.  
 
 Q. How do I check if the FSB has actually changed?
