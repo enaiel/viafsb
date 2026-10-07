@@ -197,8 +197,4 @@ HISTORY
 
 2026-10-07: v0.3.2
 * Modified  build and source files to add support for cross-compiling.
-<<<<<<< HEAD
 * Support for the W211BH PLL contributed by Vogons.org member @Xardion. 
-=======
-* Support for the W211BH PLL contributed by Vogons.org member @Xardion. 
->>>>>>> 644a020a8c0a1b917b412a88bbb55b7b6fb410ec
