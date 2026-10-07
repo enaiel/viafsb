@@ -28,7 +28,7 @@ dist:
 	-$(RM) dist/$(TARGETZIP)
 	-$(ZIP) dist/$(TARGETZIP) $(TARGET) $(TARGETTXT) $(DPMI)
 	-$(RM) dist/$(TARGETDISTZIP)
-	-$(ZIP) dist/$(TARGETDISTZIP) * -x bak/* dist/* *.o bak/ dist/ src/*.o
+	-$(ZIP) dist/$(TARGETDISTZIP) * -x bak/* dist/* *.o bak/ dist/ src/*.o sec/pll/*.o
 
 .PHONY:	dist
 
