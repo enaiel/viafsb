@@ -206,3 +206,6 @@ HISTORY
 * Code refactoring and cleanup.
 * Added print config feature to help verify against PLL datasheet.
 * Fixes for PLLs ICS9248-127, W83194BR-39B, W83195R-08.
+
+2026-10-07: v0.3.2
+* Modified build and source files to add support for cross-compiling.

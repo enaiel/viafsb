@@ -1,7 +1,7 @@
 Instructions to build and install VIAFSB
 ========================================
 
-You will need the DJGPP compiler and some UNIX tools to build VIAFSB. 
+You will need the DJGPP compiler and UNIX fileutils to build VIAFSB. 
 
 DJGPP for DOS can be obtained from https://www.delorie.com/djgpp/.
 
