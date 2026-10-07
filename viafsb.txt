@@ -17,11 +17,15 @@ PLL: CY28316 ICS9148-37 ICS9248-127 ICS94211 ICS94215 ICS94241
      ICS950405 ICS950908 PLL205-03 W124 W156C W211BH W230-03H
      W83194BR-39B W83195R-08
 
-	Usage:   VIAFSB pll_name [fsb_freq[/pci_freq]] [-u|--unsafe]
+	Usage:   VIAFSB pll_name [fsb_freq[/pci_freq]]
+                       [-u|--unsafe] [-d|--debug] [-c|--config]
+
 	Example: VIAFSB ICS94211		   / Get FSB
 	         VIAFSB ICS94211 100.23		   / Set FSB
 	         VIAFSB ICS94211 100.23/33.41	   / Set FSB/PCI
 	         VIAFSB ICS94211 150.00/37.50 -u   / Set FSB/PCI in UNSAFE MODE
+	         VIAFSB ICS94211 100.23/33.41 -d   / Debug Dry Run
+	         VIAFSB ICS94211 -c  		   / Print Config
 
 PARAMETERS
 ----------
@@ -35,6 +39,9 @@ PARAMETERS
 -u|--unsafe	Run in UNSAFE MODE and allow FSB frequency changes across all 
 		PCI dividers. Otherwise, tool will restrict FSB frequency 
 		changes to those within the current PCI divider.
+-d|--debug	Do a dry run of setting the FSB/PCI frequencies with debug  
+      		logging enabled.
+-c|--config	Print the configuration of the selected PLL and exit. 
 
 FEATURES
 --------

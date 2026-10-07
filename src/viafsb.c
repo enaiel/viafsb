@@ -393,7 +393,7 @@ int check_smb(struct via_smb *smb)
 	return 1;
 }
 
-int check_pll(char *pll_name_p)
+int check_pll(char *pll_name_p, bool skipTest)
 {
 	log_debug("%s: Using PLL %s...\n", FNAME, pll_name_p);
 	log_no_debug("PLL: Using %s... ", pll_name_p);
@@ -408,7 +408,7 @@ int check_pll(char *pll_name_p)
 	}
 	log_debug("%s: PLL %s is supported\n", FNAME, pll_name_p);
 	log_no_debug("Testing... ");
-	if(curr_pll->can_test())
+	if(curr_pll->can_test() && !skipTest)
 	{
 		if(!curr_pll->test())
 		{
@@ -421,7 +421,7 @@ int check_pll(char *pll_name_p)
 	else
 	{
 		log_no_debug("Skipping... ");
-		log_debug("%s: PLL %s does not support testing\n", FNAME, pll_name_p);
+		if(!curr_pll->can_test()) log_debug("%s: PLL %s does not support testing\n", FNAME, pll_name_p);
 	}
 	return 1;
 }
@@ -456,11 +456,14 @@ void print_usage()
 		log_all(" %s", pll_tbl[i].name);
 	log_all("\n");
 	log_all("\n"
-		"	Usage:   VIAFSB pll_name [fsb_freq[/pci_freq]] [-u|--unsafe]\n"
+		"	Usage:   VIAFSB pll_name [fsb_freq[/pci_freq]]\n" 
+                "                       [-u|--unsafe] [-d|--debug] [-c|--config]\n\n"
 		"	Example: VIAFSB ICS94211		   / Get FSB\n"
 		"	         VIAFSB ICS94211 100.23		   / Set FSB\n"
 		"	         VIAFSB ICS94211 100.23/33.41	   / Set FSB/PCI\n"
 		"	         VIAFSB ICS94211 150.00/37.50 -u   / Set FSB/PCI in UNSAFE MODE\n"
+		"	         VIAFSB ICS94211 100.23/33.41 -d   / Debug Dry Run\n"
+		"	         VIAFSB ICS94211 -c  		   / Print Config\n"
 		"\n"
 	"Author: Enaiel <enaiel@gmail.com> (c) 2022. WARNING: USE AT YOUR OWN RISK!\n");
 }
@@ -509,6 +512,15 @@ int run(char *pll_name_p, float fsb_p, float pci_p, bool debug, bool unsafe, boo
 	int ret = -1;
 	log_set_debug(debug);
 	print_header(unsafe);
+	if(config)
+	{
+		ret = check_pll(pll_name_p, TRUE);
+		if(ret < 0) return ret;
+		log_no_debug("Printing PLL config...\n\n");
+		curr_pll->print_cfg();
+		fflush(stdout);
+		return 0;
+	}
 	if(fsb_p)
 		log_debug("%s: Trying to set FSB to %.2f/%.2f using PLL %s...\n",FNAME,fsb_p,pci_p,pll_name_p);
 	else
@@ -516,15 +528,8 @@ int run(char *pll_name_p, float fsb_p, float pci_p, bool debug, bool unsafe, boo
 	struct via_smb smb = {};
 	ret = check_smb(&smb);
 	if(ret < 0) return ret;
-	ret = check_pll(pll_name_p);
+	ret = check_pll(pll_name_p, FALSE);
 	if(ret < 0) return ret;
-	if(config)
-	{
-		log_no_debug("Printing PLL config...\n\n");
-		curr_pll->print_cfg();
-		fflush(stdout);
-		return 0;
-	}
 	log_no_debug("Getting FSB... ");
 	if(!curr_pll->can_read())
 	{

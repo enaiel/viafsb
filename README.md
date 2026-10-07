@@ -38,6 +38,9 @@ PARAMETERS
 -u|--unsafe	Run in UNSAFE MODE and allow FSB frequency changes across all 
 		PCI dividers. Otherwise, tool will restrict FSB frequency 
 		changes to those within the current PCI divider.
+-d|--debug	Do a dry run of setting the FSB/PCI frequencies with debug  
+      		logging enabled.
+-c|--config	Print the configuration of the selected PLL and exit. 
 ```
 
 FEATURES
