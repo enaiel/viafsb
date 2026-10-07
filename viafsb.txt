@@ -126,13 +126,8 @@ A. With these VIA chipsets, only FSB frequencies that are within the current
    now by default restrict the FSB to only those within the current PCI divider.
    Use the new UNSAFE MODE to override this behaviour. 
 
-<<<<<<< HEAD
 Q. Why do I see duplicate FSB/PCI frequency pairs in the supported frequencies?
 A. The duplicate frequencies are due the same FSB/PCI frequency pairs having 
-=======
-Q. Why do I see double FSB/PCI frequency pairs in the supported frequencies?
-A. The double frequencies are due the same FSB/PCI frequency pairs having 
->>>>>>> 644a020a8c0a1b917b412a88bbb55b7b6fb410ec
    different spread spectrum settings in your PLL frequency table.  
 
 Q. How do I check if the FSB has actually changed?
