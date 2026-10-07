@@ -1,0 +1,25 @@
+Instructions to build and install VIAFSB
+========================================
+
+You will need the DJGPP compiler and some UNIX tools to build VIAFSB. 
+
+DJGPP for DOS can be obtained from https://www.delorie.com/djgpp/.
+
+You can alternatively use the DJGPP cross-compiler for Windows, Linux or Mac from https://github.com/andrewwutw/build-djgpp. On Windows, you would additionally need a UNIX shell like MSYS or MSYS2, or if you really must, CYGWIN. 
+
+Building VIAFSB
+---------------
+
+VIAFSB uses GNU Makefiles.
+
+1. To build VIAFSB, from the project directory run:
+
+make all
+
+2. To do a clean build, from the project directory run:
+
+make clean all
+
+After compilation you will find the VIAFSB executable in the project directory.
+
+
