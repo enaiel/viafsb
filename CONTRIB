@@ -1,0 +1,22 @@
+How to Contribute Support for New PLL Chips
+===========================================
+
+Changes
+-------
+* Find and download the datasheet for the $NEW_PLL PLL to docs/$NEW_PLL.pdf.
+* Copy the template file src/pll/pllname.c to src/pll/$NEW_PLL.c.
+* Update pllname, pll constants, frequency table fsb_tbl, and pll registers pll_reg in $NEW_PLL.c from the datasheet.
+* Modify file src/include/pll.h.
+* Add macros PLL_MAKE_FUNCS($NEW_PLL) and PLL_MAKE_STRUCT("$NEW_PLL", $NEW_PLL).
+
+Replace $NEW_PLL with name of the new PLL being added. for example W129C.
+
+Testing
+-------
+* Build the application.
+* Use the print config feature to verify your configuration against the datasheet.
+* Test your changes. 
+* Use the debug dry run feature to help diagnose issues.
+
+If your changes work, create an issue in Github and submit a pull request. The PR should contain the 3 files above.
+
