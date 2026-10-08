@@ -169,3 +169,8 @@ void w230_03h_print_cfg()
 {
 	alg1_print_cfg(&pll);
 }
+
+void w230_03h_init()
+{
+	alg1_init(&pll);
+}

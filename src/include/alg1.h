@@ -88,4 +88,6 @@ bool alg1_test(const pll_data *pll);
 
 void alg1_print_cfg(const pll_data *pll);
 
+void alg1_init(const pll_data *pll);
+
 #endif //__ALG1_H_

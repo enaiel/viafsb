@@ -136,3 +136,8 @@ void pllname_print_cfg()
 {
 	alg1_print_cfg(&pll);
 }
+
+void pllname_init()
+{
+	alg1_init(&pll);
+}

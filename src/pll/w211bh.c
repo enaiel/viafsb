@@ -169,3 +169,8 @@ void w211bh_print_cfg()
 {
 	alg1_print_cfg(&pll);
 }
+
+void w211bh_init()
+{
+	alg1_init(&pll);
+}

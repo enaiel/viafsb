@@ -170,3 +170,8 @@ void pll205_03_print_cfg()
 {
 	alg1_print_cfg(&pll);
 }
+
+void pll205_03_init()
+{
+	alg1_init(&pll);
+}

@@ -172,3 +172,8 @@ void ics94215_print_cfg()
 {
 	alg1_print_cfg(&pll);
 }
+
+void ics94215_init()
+{
+	alg1_init(&pll);
+}

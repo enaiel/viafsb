@@ -25,6 +25,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #include "../include/types.h"
 #include "../include/log.h"
@@ -321,4 +322,17 @@ void alg1_print_cfg(const pll_data *pll)
 		}
 		printf("\n");
 	}
+}
+
+int alg1_cmp_rec(const void *a, const void *b) 
+{
+	const fsb_rec *rec_a = (const fsb_rec *)a;
+    	const fsb_rec *rec_b = (const fsb_rec *)b;
+	return rec_a->fsb - rec_b->fsb;
+}
+	
+
+void alg1_init(const pll_data *pll)
+{
+	qsort((void *)pll->fsb_tbl, pll->fsb_tbl_size, sizeof(fsb_rec), alg1_cmp_rec);
 }

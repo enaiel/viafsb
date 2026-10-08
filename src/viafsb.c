@@ -406,6 +406,7 @@ int check_pll(char *pll_name_p, bool skipTest)
 		list_pll();
 		return -ERRVIAFSB05;
 	}
+	curr_pll->init();
 	log_debug("%s: PLL %s is supported\n", FNAME, pll_name_p);
 	log_no_debug("Testing... ");
 	if(curr_pll->can_test() && !skipTest)
@@ -506,6 +507,7 @@ int get_opts(int argc, char* argv[], char **pll_name_p, float *fsb_p, float *pci
 
 int run(char *pll_name_p, float fsb_p, float pci_p, bool debug, bool unsafe, bool config)
 {
+	bool skipChecks = FALSE;
 	float fsb, pci;
 	u8 fsb_key;
 	int pci_div; 
@@ -527,8 +529,8 @@ int run(char *pll_name_p, float fsb_p, float pci_p, bool debug, bool unsafe, boo
 		log_debug("%s: Trying to get current FSB using PLL %s...\n",FNAME,pll_name_p);
 	struct via_smb smb = {};
 	ret = check_smb(&smb);
-	if(ret < 0) return ret;
-	ret = check_pll(pll_name_p, FALSE);
+	if(ret < 0 && !skipChecks) return ret;
+	ret = check_pll(pll_name_p, skipChecks);
 	if(ret < 0) return ret;
 	log_no_debug("Getting FSB... ");
 	if(!curr_pll->can_read())

@@ -145,3 +145,8 @@ void ics9148_37_print_cfg()
 {
 	alg1_print_cfg(&pll);
 }
+
+void ics9148_37_init()
+{
+	alg1_init(&pll);
+}

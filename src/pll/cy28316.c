@@ -170,3 +170,7 @@ void cy28316_print_cfg()
 	alg1_print_cfg(&pll);
 }
 
+void cy28316_init()
+{
+	alg1_init(&pll);
+}

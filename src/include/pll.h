@@ -36,9 +36,10 @@ extern bool name ## _can_test(); \
 extern bool name ## _can_read(); \
 extern bool name ## _test(); \
 extern void name ## _print_cfg(); \
+extern void name ## _init(); \
 extern int name ## _get_supp_fsb_size(); 
 
-#define PLL_MAKE_STRUCT(name, instance) {name, instance ## _set_fsb, instance ## _get_fsb, instance ## _get_supp_fsb, instance ## _can_test, instance ## _can_read, instance ## _test, instance ## _print_cfg, instance ## _get_supp_fsb_size}
+#define PLL_MAKE_STRUCT(name, instance) {name, instance ## _set_fsb, instance ## _get_fsb, instance ## _get_supp_fsb, instance ## _can_test, instance ## _can_read, instance ## _test, instance ## _print_cfg, instance ## _init, instance ## _get_supp_fsb_size}
 
 typedef struct
 {
@@ -51,6 +52,7 @@ typedef struct
 	bool (*can_read)();
 	bool (*test)();
 	void (*print_cfg)();
+	void (*init)();
 	int (*get_supp_fsb_size)();
 } pll_rec;
 

@@ -153,3 +153,8 @@ void w83195r_08_print_cfg()
 {
 	alg1_print_cfg(&pll);
 }
+
+void w83195r_08_init()
+{
+	alg1_init(&pll);
+}

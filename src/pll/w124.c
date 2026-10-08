@@ -145,3 +145,8 @@ void w124_print_cfg()
 {
 	alg1_print_cfg(&pll);
 }
+
+void w124_init()
+{
+	alg1_init(&pll);
+}

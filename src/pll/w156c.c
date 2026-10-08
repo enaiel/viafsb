@@ -153,3 +153,8 @@ void w156c_print_cfg()
 {
 	alg1_print_cfg(&pll);
 }
+
+void w156c_init()
+{
+	alg1_init(&pll);
+}

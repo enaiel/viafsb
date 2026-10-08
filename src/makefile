@@ -12,7 +12,7 @@ CC = $(CROSS_COMPILER)gcc
 VERFILE=../VERSION
 VER=$(strip $(shell cat $(VERFILE)))
 CFLAGS = -DVERSION=\"$(VER)\" -O2 -std=gnu99 -Wall -finline 
-LDFLAGS = -lm
+LDFLAGS = -lm -lc
 OBJS=viafsb.o pci.o smb.o log.o
 PLLOBJS=pll/*.o
 PROG=viafsb
