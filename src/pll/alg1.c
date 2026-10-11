@@ -322,13 +322,33 @@ void alg1_print_cfg(const pll_data *pll)
 		}
 		printf("\n");
 	}
+	/*
+	printf("fsb_tbl:\n");
+	for(int key=0; key<pll->fsb_tbl_size; key++)
+	{
+		for(int i=0; pll->fsb_tbl[i].fsb; i++)
+		{
+			if(pll->fsb_tbl[i].fsb_key == key) 
+			{	
+				printf("\t{ %.2f,\t%.2f,\t0x%02X,\t%i }",pll->fsb_tbl[i].fsb,pll->fsb_tbl[i].pci,key,pll->fsb_tbl[i].pci_div);
+				if(key < pll->fsb_tbl_size - 1)
+					printf(",");
+				printf("\n");
+				break;
+			}
+		}
+	}
+	*/
 }
 
 int alg1_cmp_rec(const void *a, const void *b) 
 {
 	const fsb_rec *rec_a = (const fsb_rec *)a;
     	const fsb_rec *rec_b = (const fsb_rec *)b;
-	return rec_a->fsb - rec_b->fsb;
+	int cmp = (rec_a->fsb > rec_b->fsb) - (rec_a->fsb < rec_b->fsb); 
+	if(cmp == 0)
+		cmp = (rec_a->pci_div > rec_b->pci_div) - (rec_a->pci_div < rec_b->pci_div); 
+	return cmp;
 }
 	
 

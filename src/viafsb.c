@@ -297,7 +297,8 @@ void list_fsb(float fsb, float pci, bool unsafe)
 	int size = curr_pll->get_supp_fsb_size();
 	bool found = FALSE;
 	for (int i=0; i<size; i++)
-	{	curr_pll->get_supp_fsb(i, &fsb_t, &pci_t, &fsb_key_t, &pci_div_t); 
+	{	
+		curr_pll->get_supp_fsb(i, &fsb_t, &pci_t, &fsb_key_t, &pci_div_t); 
 		if(unsafe || !pci || pci_div == pci_div_t)
 		{
 			if(found) log_all("\t");
