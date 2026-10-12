@@ -207,8 +207,8 @@ HISTORY
 * Modified  build and source files to add support for cross-compiling.
 * Support for the W211BH PLL contributed by Vogons.org member @Xardion. 
 
-2026-10-XX: v0.3.3
+2026-10-12: v0.3.3
 * Added support for PLLs W230H, W196.
-* Fix sorting of FSB frequencies in each PLL FSB frequency table.
-* Add instructions on how to contribute support for new PLLs in CONTRIB file.
+* Fixed sorting of FSB frequencies in each PLL FSB frequency table.
+* Added instructions on how to contribute support for new PLLs in CONTRIB file.
 * Skip SMBus and PLL checks when using the print config feature.
