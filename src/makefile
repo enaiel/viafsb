@@ -21,7 +21,7 @@ TARGET=../$(PROG).exe
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(MAKE) -C pll all
+	-$(MAKE) -C pll all
 	-$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(PLLOBJS) $(LDFLAGS)
 
 %.o: %.c
@@ -29,6 +29,6 @@ $(TARGET): $(OBJS)
 
 clean:
 	-$(RM) $(TARGET)
-	-$(RM) *.o
+	-$(RM) $(OBJS)
 	-$(MAKE) -C pll clean
 

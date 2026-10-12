@@ -8,6 +8,7 @@ Changes
 * Update pllname, pll constants, frequency table fsb_tbl, and pll registers pll_reg in $NEW_PLL.c from the datasheet.
 * Modify file src/include/pll.h.
 * Add macros PLL_MAKE_FUNCS($NEW_PLL) and PLL_MAKE_STRUCT("$NEW_PLL", $NEW_PLL).
+* ADD $NEW_PLL.c to SRCS variable in src/pll/makefile.
 
 Replace $NEW_PLL with name of the new PLL being added. for example W129C.
 
@@ -18,5 +19,5 @@ Testing
 * Test your changes. 
 * Use the debug dry run feature to help diagnose issues.
 
-If your changes work, create an issue in Github and submit a pull request. The PR should contain the 3 files above.
+If your changes work, create an issue in Github and submit a pull request. The PR should contain the 4 files above.
 
