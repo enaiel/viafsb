@@ -15,8 +15,8 @@ SUPPORTED
 VIA chipsets: VT82C596/A VT82C596B VT82C686/A/B VT8231 VT8233 VT8233A
               VT8233C VT8235 VT8237/R VT8237A VT8237S VT8251
 PLL: CY28316 ICS9148-37 ICS9248-127 ICS94211 ICS94215 ICS94241
-     ICS950405 ICS950908 PLL205-03 W124 W156C W211BH W230-03H
-     W83194BR-39B W83195R-08
+     ICS950405 ICS950908 PLL205-03 W124 W156C W196 W211BH
+     W230H W230-03H W83194BR-39B W83195R-08
 
 	Usage:   VIAFSB pll_name [fsb_freq[/pci_freq]] [-u|--unsafe]
 	Example: VIAFSB ICS94211		   / Get FSB
@@ -103,6 +103,8 @@ ABIT KT7A       	  | VT82C686/A/B | PLL-205-03      |
 Unbranded MVP4		  | VT82C686/A/B | W156C           |
 PCPartner AP133TAS3-T205C | VT82C686/A/B | ICS94211        |
 Asus A7V133-VM            | VT82C686/A/B | ICS94215        |
+Boser HS-6251             | VT82C686/A/B | W230H           |
+
 
 FAQ
 ---
@@ -214,3 +216,10 @@ HISTORY
 2026-10-07: v0.3.2
 * Modified build and source files to add support for cross-compiling.
 * Support for the W211BH PLL contributed by Vogons.org member @Xardion. 
+
+2026-10-12: v0.3.3
+* Added support for PLLs W230H, W196.
+* Fixed sorting of FSB frequencies in each PLL FSB frequency table.
+* Added instructions on how to contribute support for new PLLs in CONTRIB file.
+* Skip SMBus and PLL checks when using the print config feature.
+
