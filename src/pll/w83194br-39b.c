@@ -55,6 +55,11 @@
 #define CAN_TEST	1	
 #define FSB_TBL_SIZE 	64
 #define FNAME		"W83194BR-39B"
+#define SS_BYTE		1
+#define SS_EN_BIT	5
+#define SS0_BIT		4
+#define SS1_BIT		-1
+#define SS_TBL_SIZE	3
 
 static const fsb_rec fsb_tbl[] =
 {
@@ -124,6 +129,13 @@ static const fsb_rec fsb_tbl[] =
 	{ 200.00,	40.00,	0x3F,	5 }
 };
 
+static const ss_rec ss_tbl[] =
+{
+	{ 0x00,	"OFF"		},
+	{ 0x01,	"+-0.25%"	},
+	{ 0x03,	"+-0.50%"	}
+};
+
 static u8 pll_reg[] = 
 { 
 	0x00, 0xCF, 0xFF, 0xFF, 0xFF, 0x93, 0x00, 0x00,
@@ -160,7 +172,13 @@ static const pll_data pll =
 	LFS5_BIT,
 	LFS_INV,
 	CAN_TEST,
-	CAN_READ
+	CAN_READ,
+	ss_tbl,
+	SS_TBL_SIZE,
+	SS_BYTE,
+	SS_EN_BIT,
+	SS0_BIT,
+	SS1_BIT
 };
 
 int w83194br_39b_set_fsb(float fsb, float pci, bool test)

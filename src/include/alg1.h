@@ -37,7 +37,14 @@ typedef struct
 	float pci;
 	u8 fsb_key;
 	int pci_div;
+	char * ss;
 } fsb_rec;
+
+typedef struct
+{
+	u8 ss_key;
+	char * ss;
+} ss_rec;
 
 typedef struct
 {
@@ -70,6 +77,12 @@ typedef struct
 	bool lfs_inv;			// LFS_INV
 	bool can_test;			// CAN_TEST
 	bool can_read;			// CAN_READ
+	const ss_rec *ss_tbl;		// ss_tbl
+	int ss_tbl_size;		// SS_TBL_SIZE
+	int ss_byte;			// SS_BYTE
+	int ss_en_bit;			// SS_EN_BIT
+	int ss0_bit;			// SS0_BIT
+	int ss1_bit;			// SS1_BIT
 } pll_data;
 
 int alg1_set_fsb(const pll_data *pll, float fsb, float pci, bool test);

@@ -55,6 +55,11 @@
 #define CAN_TEST	1	
 #define FSB_TBL_SIZE 	8
 #define FNAME		"ICS9148-37"
+#define SS_BYTE		0
+#define SS_EN_BIT	1
+#define SS0_BIT		2
+#define SS1_BIT		7
+#define SS_TBL_SIZE	5
 
 static const fsb_rec fsb_tbl[] =
 {
@@ -66,6 +71,15 @@ static const fsb_rec fsb_tbl[] =
 	{ 83.30,	33.30,	0x05,	3 },
 	{ 95.25,	31.75,	0x06,	3 },
 	{ 100.00,	33.30,	0x07,	3 }
+};
+
+static const ss_rec ss_tbl[] =
+{
+	{ 0x00,	"OFF"		},
+	{ 0x01,	"+-0.25%" 	},
+	{ 0x03,	"-0.25%" 	},
+	{ 0x05,	"+-0.60%" 	},
+	{ 0x07,	"-0.60%" 	}
 };
 
 static u8 pll_reg[] = 
@@ -103,7 +117,13 @@ static const pll_data pll =
 	LFS5_BIT,
 	LFS_INV,
 	CAN_TEST,
-	CAN_READ
+	CAN_READ,
+	ss_tbl,
+	SS_TBL_SIZE,
+	SS_BYTE,
+	SS_EN_BIT,
+	SS0_BIT,
+	SS1_BIT
 };
 
 int ics9148_37_set_fsb(float fsb, float pci, bool test)

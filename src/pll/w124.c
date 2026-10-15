@@ -55,6 +55,11 @@
 #define CAN_TEST	0
 #define FSB_TBL_SIZE 	8
 #define FNAME	"W124"
+#define SS_BYTE		3
+#define SS_EN_BIT	-1
+#define SS0_BIT		0
+#define SS1_BIT		1
+#define SS_TBL_SIZE	2
 
 static const fsb_rec fsb_tbl[] =
 {
@@ -66,6 +71,13 @@ static const fsb_rec fsb_tbl[] =
 	{ 112.00,	37.30,	0x05,	3 },
 	{ 133.30,	44.43,	0x06,	3 },
 	{ 100.00,	33.30,	0x07,	3 }
+};
+
+static const ss_rec ss_tbl[] =
+{
+	{ 0x00,	"OFF"		},
+	{ 0x04,	"+-0.50%"	}
+
 };
 
 static u8 pll_reg[] = 
@@ -103,7 +115,13 @@ static const pll_data pll =
 	LFS5_BIT,
 	LFS_INV,
 	CAN_TEST,
-	CAN_READ
+	CAN_READ,
+	ss_tbl,
+	SS_TBL_SIZE,
+	SS_BYTE,
+	SS_EN_BIT,
+	SS0_BIT,
+	SS1_BIT
 };
 
 int w124_set_fsb(float fsb, float pci, bool test)

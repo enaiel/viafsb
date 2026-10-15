@@ -260,7 +260,7 @@ void alg1_print_cfg(const pll_data *pll)
 	printf("Frequency Table:\n");
 	for(int i=fs_size-1; i>=0; i--)
 		printf("FS%i\t",i);
-	printf("CPU\tPCI\n");
+	printf("CPU\tPCI\tSS\n");
 	for(int key=0; key<pll->fsb_tbl_size; key++)
 	{
 		for(int i=fs_size-1; i>=0; i--)
@@ -271,12 +271,30 @@ void alg1_print_cfg(const pll_data *pll)
 		{
 			if(pll->fsb_tbl[i].fsb_key == key) 
 			{
-				printf("%.2f\t%.2f",pll->fsb_tbl[i].fsb,pll->fsb_tbl[i].pci);
+				printf("%.2f\t%.2f\t%s",pll->fsb_tbl[i].fsb,pll->fsb_tbl[i].pci,(pll->fsb_tbl[i].ss)?pll->fsb_tbl[i].ss:"OFF");
 				break;
 			}
 		}
 		printf("\n");
 	}
+	printf("Spread Spectrum Table:\n");
+	printf("SS1\tSS0\tSS_EN\tSS\n");
+	for(int i=0; i<pll->ss_tbl_size; i++)
+	{
+		if(pll->ss_tbl[i].ss_key & pll->ss1_bit) 
+			printf("%i\t",1);
+		else
+			printf("%i\t",0);
+		if(pll->ss_tbl[i].ss_key & pll->ss0_bit) 
+			printf("%i\t",1);
+		else
+			printf("%i\t",0);
+		if(pll->ss_tbl[i].ss_key & pll->ss_en_bit) 
+			printf("%i\t",1);
+		else
+			printf("%i\t",0);
+		printf("%s\n",pll->ss_tbl[i].ss);			
+	}	
 	printf("I2C Registers:\n");	
 	printf("Byte\tPWD\t");
 	for(int i=7; i>0; i--)
@@ -315,6 +333,12 @@ void alg1_print_cfg(const pll_data *pll)
 					pll->lfs_inv?printf("!LFS5"):printf("LFS5");
 			else if(pll->byte_count_byte != -1 && i == pll->byte_count_byte)
 				printf("BC%i",j);
+			else if(i == pll->ss_byte && pll->ss_en_bit == j)
+					printf("SS_EN");
+			else if(i == pll->ss_byte && pll->ss0_bit == j)
+					printf("SS0");
+			else if(i == pll->ss_byte && pll->ss1_bit == j)
+					printf("SS1");					
 			else 
 				printf("%i", get_bit(buf[i],j));
 			if(j>0)

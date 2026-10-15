@@ -55,6 +55,11 @@
 #define CAN_READ	1
 #define FSB_TBL_SIZE 	32
 #define FNAME	"CY28316"
+#define SS_BYTE		0
+#define SS_EN_BIT	-1
+#define SS0_BIT		0
+#define SS1_BIT		7
+#define SS_TBL_SIZE	4
 
 static const fsb_rec fsb_tbl[] =
 {
@@ -92,6 +97,14 @@ static const fsb_rec fsb_tbl[] =
 	{ 133.30,	33.30,	0x1F,	4 }
 };
 
+static const ss_rec ss_tbl[] =
+{
+	{ 0x00,	"OFF"		},
+	{ 0x02,	"-0.50%"	},
+	{ 0x04,	"+-0.50%"	},
+	{ 0x06,	"+-0.25%"	}
+};
+
 static u8 pll_reg[] = 
 {
 	0x00, 0xFE, 0xFF, 0xBF, 0x00, 0x03, 0x3E, 0x60, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00
@@ -127,7 +140,13 @@ static const pll_data pll =
 	LFS5_BIT,
 	LFS_INV,
 	CAN_TEST,
-	CAN_READ
+	CAN_READ,
+	ss_tbl,
+	SS_TBL_SIZE,
+	SS_BYTE,
+	SS_EN_BIT,
+	SS0_BIT,
+	SS1_BIT
 };
 
 int cy28316_set_fsb(float fsb, float pci, bool test)

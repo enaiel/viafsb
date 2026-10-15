@@ -53,10 +53,19 @@
 #define LFS_INV		0	
 #define CAN_READ	1	
 #define CAN_TEST	1	
-#define FSB_TBL_SIZE 	-1
+#define FSB_TBL_SIZE 	0
 #define FNAME	"PLLNAME"
+#define SS_BYTE		-1
+#define SS_EN_BIT	-1
+#define SS0_BIT		-1
+#define SS1_BIT		-1
+#define SS_TBL_SIZE	0
 
 static const fsb_rec fsb_tbl[] =
+{
+};
+
+static const ss_rec ss_tbl[] =
 {
 };
 
@@ -94,7 +103,13 @@ static const pll_data pll =
 	LFS5_BIT,
 	LFS_INV,
 	CAN_TEST,
-	CAN_READ
+	CAN_READ,
+	ss_tbl,
+	SS_TBL_SIZE,
+	SS_BYTE,
+	SS_EN_BIT,
+	SS0_BIT,
+	SS1_BIT
 };
 
 int pllname_set_fsb(float fsb, float pci, bool test)

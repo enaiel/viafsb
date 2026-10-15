@@ -55,6 +55,11 @@
 #define CAN_TEST	1	
 #define FSB_TBL_SIZE 	16
 #define FNAME	"ICS950405"
+#define SS_BYTE		0
+#define SS_EN_BIT	7
+#define SS0_BIT		-1
+#define SS1_BIT		-1
+#define SS_TBL_SIZE	2
 
 static const fsb_rec fsb_tbl[] =
 {
@@ -74,6 +79,13 @@ static const fsb_rec fsb_tbl[] =
 	{ 233.33,	33.33,	0x0D,	7 },
 	{ 266.67,	33.33,	0x0E,	8 },
 	{ 300.00,	37.50,	0x0F,	8 }
+};
+
+static const ss_rec ss_tbl[] =
+{
+	{ 0x00,	"OFF"		},
+	{ 0x01,	"+-0.35%"	}
+
 };
 
 static u8 pll_reg[] = 
@@ -112,7 +124,13 @@ static const pll_data pll =
 	LFS5_BIT,
 	LFS_INV,
 	CAN_TEST,
-	CAN_READ
+	CAN_READ,
+	ss_tbl,
+	SS_TBL_SIZE,
+	SS_BYTE,
+	SS_EN_BIT,
+	SS0_BIT,
+	SS1_BIT
 };
 
 int ics950405_set_fsb(float fsb, float pci, bool test)

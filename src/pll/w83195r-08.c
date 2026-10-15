@@ -55,6 +55,11 @@
 #define CAN_TEST	1	
 #define FSB_TBL_SIZE 	16
 #define FNAME		"W83195R-08"
+#define SS_BYTE		0
+#define SS_EN_BIT	1
+#define SS0_BIT		7
+#define SS1_BIT		-1
+#define SS_TBL_SIZE	3
 
 static const fsb_rec fsb_tbl[] =
 {
@@ -74,6 +79,13 @@ static const fsb_rec fsb_tbl[] =
 	{ 150.00,	37.50,	0x0D,	4 },
 	{ 124.00,	31.00,	0x0E,	4 },
 	{ 133.00,	33.25,	0x0F,	4 }
+};
+
+static const ss_rec ss_tbl[] =
+{
+	{ 0x00,	"OFF"		},
+	{ 0x01,	"+-0.25%"	},
+	{ 0x03,	"+-0.50%"	}
 };
 
 static u8 pll_reg[] = 
@@ -111,7 +123,13 @@ static const pll_data pll =
 	LFS5_BIT,
 	LFS_INV,
 	CAN_TEST,
-	CAN_READ
+	CAN_READ,
+	ss_tbl,
+	SS_TBL_SIZE,
+	SS_BYTE,
+	SS_EN_BIT,
+	SS0_BIT,
+	SS1_BIT
 };
 
 int w83195r_08_set_fsb(float fsb, float pci, bool test)
